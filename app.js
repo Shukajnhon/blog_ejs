@@ -13,11 +13,15 @@ const homeStartingContent = "Hello guys!!"
 const aboutContent = "About!!"
 const contactContent = "Contact!!"
 
-const posts = [];
+let posts = [];
 
 // Home Page
 app.get('/', (req, res) => {
-    res.render("home", { startingContent: homeStartingContent })
+    res.render("home", {
+        startingContent: homeStartingContent,
+        posts: posts,
+    })
+    // console.log(posts)
 });
 
 // Contact Page
@@ -46,8 +50,7 @@ app.post('/compose', (req, res) => {
 
     posts.push(post)
 
-    console.log(posts)
-    console.log(post)
+    res.redirect("/")
 
 })
 
