@@ -1,6 +1,8 @@
 //
 const express = require("express");
 const bodyParser = require("body-parser");
+// lodash
+const _ = require('lodash');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,9 +54,24 @@ app.post('/compose', (req, res) => {
 
     res.redirect("/")
 
-})
+});
 
+// Routing to Post page
+app.get('/posts/:postName', (req, res) => {
+    const requestTitle = _.lowerCase(req.params.postName);
 
+    posts.forEach(function (post) {
+        const storedTitle = _.lowerCase(post.title);
+
+        if (storedTitle === requestTitle) {
+            res.render('post', {
+                title: post.title,
+                content: post.content,
+            })
+        }
+    });
+
+});
 
 
 

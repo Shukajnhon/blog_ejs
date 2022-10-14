@@ -13,11 +13,12 @@
             <%= post.title %>
         </h1>
         <p>
-            <%= post.content %>
+            <!-- link to post title in order to read more detail  -->
+            <%= post.content.substring(0,100) + '...' %>
+                <a href="/posts/<%= post.title%>">Read More</a>
         </p>
 
         <% }) %>
-
 
             <!-- include footer -->
             <%- include('partials/footer'); -%>
